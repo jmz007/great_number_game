@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Great Numbers Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gng.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    
+</head>
+<body>
+    <div id="header"></div>
+    <div id="box">
+        <h1>Welcome to the Great Number Game!</h1>
+            <p>I am thinking of a number between 1 and 100</p>
+            <p>Take a guess!</p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action='/guess' method='POST'>
+                <input type='number' name='guess'>
+                <input type='submit' value='submit'>
+            </form>
+            <form action='/reset' method='POST'>
+                <input type='submit' name='reset' value='Reset'>
+            </form>
+    </div>    
+</body>
+</html>
